@@ -1,10 +1,9 @@
-#visgraph
+#VisGraph
 
 Graph visualization library written in Java.
 
-##Files
+##Source Files
 
-* [\src_tree.txt](https://github.com/ryankane/visgraph/blob/master/src/src_tree.txt)
 * [\main\java\vis\graph\visgraph\App.java](https://github.com/ryankane/visgraph/blob/master/src/main/java/vis/graph/visgraph/App.java)
 * [\main\java\vis\graph\visgraph\components\GraphPanel.java](https://github.com/ryankane/visgraph/blob/master/src/main/java/vis/graph/visgraph/components/GraphPanel.java)
 * [\main\java\vis\graph\visgraph\core\ifc\Edge.java](https://github.com/ryankane/visgraph/blob/master/src/main/java/vis/graph/visgraph/core/ifc/Edge.java)
