@@ -1,7 +1,9 @@
 package vis.graph.visgraph.core.ui;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.geom.Point2D;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
@@ -20,6 +22,8 @@ public class UIGraph<T> extends JComponent implements Graph<T> {
 
 	public UIGraph() {
 		graph = new GraphImpl<T>();
+
+		setPreferredSize(new Dimension(500, 500));
 	}
 
 	@Override
@@ -44,8 +48,7 @@ public class UIGraph<T> extends JComponent implements Graph<T> {
 
 	@Override
 	public Vertex<T> addVertex(T data, Point2D.Double point) {
-		Vertex<T> vertex = new UIVertex<T>(data, point.x, point.y, 10);
-		return addVertex(vertex);
+		return addVertex(new UIVertex<T>(data, point.x, point.y, 10));
 	}
 
 	@Override
@@ -82,7 +85,13 @@ public class UIGraph<T> extends JComponent implements Graph<T> {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
+		for (Enumeration<Edge<T>> e = graph.getEdges().elements(); e.hasMoreElements();) {
+			((UIEdge<T>) e.nextElement()).paint(g);
+		}
 
+		for (Enumeration<Vertex<T>> e = graph.getVerticies().elements(); e.hasMoreElements();) {
+			((UIVertex<T>) e.nextElement()).paint(g);
+		}
 	}
 
 	@Override

@@ -105,7 +105,7 @@ public class GraphImpl<T> implements Graph<T>{
 		for (Enumeration<Vertex<T>> e = verticies.elements(); e.hasMoreElements();) {
 			buff.append("\t\t").append(e.nextElement()).append('\n');
 		}
-		buff.append("\t]\n\t\"Edges\" : [\n");
+		buff.append("\t],\n\t\"Edges\" : [\n");
 		for (Enumeration<Edge<T>> e = edges.elements(); e.hasMoreElements();) {
 			buff.append("\t\t").append(e.nextElement()).append('\n');
 		}

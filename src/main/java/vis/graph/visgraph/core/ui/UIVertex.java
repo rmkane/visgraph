@@ -50,7 +50,6 @@ public class UIVertex<T> extends JComponent implements Vertex<T> {
 
 		Rectangle b = UIUtils.getBounds(this);
 
-
 		g.setColor(Color.BLUE);
 		g.drawOval(b.x, b.y, b.width, b.height);
 	}

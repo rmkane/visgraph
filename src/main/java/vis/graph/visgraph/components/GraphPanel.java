@@ -35,5 +35,7 @@ public class GraphPanel<T> extends JPanel {
 
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, getWidth(), getHeight());
+
+		((UIGraph<T>) graph).paint(g);
 	}
 }

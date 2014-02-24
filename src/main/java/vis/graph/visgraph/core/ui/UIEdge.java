@@ -1,8 +1,10 @@
 package vis.graph.visgraph.core.ui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.geom.Rectangle2D;
 
 import javax.swing.JComponent;
 
@@ -21,7 +23,10 @@ public class UIEdge<T> extends JComponent implements Edge<T> {
 
 		this.edge = new EdgeImpl<T>(source, destination);
 
-		setBounds(UIUtils.computeBounds(source.getPoint(), destination.getPoint()));
+		Rectangle2D bounds = UIUtils.computeBounds2D(
+				source.getPoint(), destination.getPoint());
+
+		setPreferredSize(new Dimension((int) bounds.getX(), (int) bounds.getY()));
 	}
 
 	@Override
