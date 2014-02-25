@@ -1,5 +1,6 @@
 package vis.graph.visgraph.core.ui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.geom.Point2D;
@@ -8,22 +9,22 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
 
-import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 import vis.graph.visgraph.core.ifc.Edge;
 import vis.graph.visgraph.core.ifc.Graph;
 import vis.graph.visgraph.core.ifc.Vertex;
 import vis.graph.visgraph.core.impl.GraphImpl;
 
-public class UIGraph<T> extends JComponent implements Graph<T> {
+public class UIGraph<T> extends JPanel implements Graph<T> {
 	private static final long serialVersionUID = 3953155966661463983L;
 
 	private Graph<T> graph;
 
-	public UIGraph() {
+	public UIGraph(int width, int height) {
 		graph = new GraphImpl<T>();
 
-		setPreferredSize(new Dimension(500, 500));
+		setPreferredSize(new Dimension(width, height));
 	}
 
 	@Override
@@ -84,6 +85,9 @@ public class UIGraph<T> extends JComponent implements Graph<T> {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+
+		g.setColor(Color.YELLOW);
+		g.fillRect(0, 0, getWidth(), getHeight());
 
 		for (Enumeration<Edge<T>> e = graph.getEdges().elements(); e.hasMoreElements();) {
 			((UIEdge<T>) e.nextElement()).paint(g);

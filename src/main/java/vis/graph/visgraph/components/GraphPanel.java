@@ -1,23 +1,22 @@
 package vis.graph.visgraph.components;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
 import vis.graph.visgraph.core.ifc.Graph;
 import vis.graph.visgraph.core.ui.UIGraph;
-import vis.graph.visgraph.core.ui.UIVertex;
-
 
 public class GraphPanel<T> extends JPanel {
 	private static final long serialVersionUID = -5487092989303271440L;
 
 	private Graph<T> graph;
 
-	private UIVertex<String> foo;
+	public GraphPanel(int width, int height) {
+		setPreferredSize(new Dimension(width, height));
 
-	public GraphPanel() {
-		graph = new UIGraph<T>();
+		graph = new UIGraph<T>(width, height);
 		add((UIGraph<T>) graph);
 	}
 
@@ -36,6 +35,6 @@ public class GraphPanel<T> extends JPanel {
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, getWidth(), getHeight());
 
-		((UIGraph<T>) graph).paint(g);
+		//((UIGraph<T>) graph).paint(g);
 	}
 }

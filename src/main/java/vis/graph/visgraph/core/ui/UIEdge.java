@@ -1,8 +1,10 @@
 package vis.graph.visgraph.core.ui;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 
@@ -53,11 +55,15 @@ public class UIEdge<T> extends JComponent implements Edge<T> {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
+		Graphics2D g2d = (Graphics2D) g;
+
 		Point src = UIUtils.getPoint(getSource());
-		Point dest = UIUtils.getPoint(getSource());
+		Point dest = UIUtils.getPoint(getDestination());
+
+		g2d.setStroke(new BasicStroke(5));
 
 		g.setColor(Color.RED);
-		g.drawLine(src.x, src.y, dest.x, dest.y);
+		g2d.drawLine(src.x, src.y, dest.x, dest.y);
 	}
 
 	@Override

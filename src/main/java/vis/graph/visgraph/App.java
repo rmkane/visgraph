@@ -5,6 +5,7 @@ import javax.swing.SwingUtilities;
 import vis.graph.visgraph.components.GraphPanel;
 import vis.graph.visgraph.core.ifc.Graph;
 import vis.graph.visgraph.core.ifc.Vertex;
+import vis.graph.visgraph.core.ui.UIGraph;
 import vis.graph.visgraph.core.ui.UIVertex;
 
 public class App extends JFrame {
@@ -14,7 +15,7 @@ public class App extends JFrame {
 	private GraphPanel<String> graphPanel;
 
 	public App(String title) {
-		graphPanel = new GraphPanel<String>();
+		graphPanel = new GraphPanel<String>(600, 400);
 
 		setUpGraph();
 
@@ -28,25 +29,27 @@ public class App extends JFrame {
 	private void setUpGraph() {
 		Graph<String> g = graphPanel.getGraph();
 
-		Vertex<String> a = new UIVertex<String>("A", 100, 25, 10);
-		Vertex<String> b = new UIVertex<String>("B", 75, 50, 10);
-		Vertex<String> c = new UIVertex<String>("C", 60, 75, 10);
-		Vertex<String> d = new UIVertex<String>("D", 90, 75, 10);
-		Vertex<String> e = new UIVertex<String>("E", 75, 100, 10);
-		Vertex<String> f = new UIVertex<String>("F", 125, 50, 10);
+		int size = 50;
 
-		g.addVertex(a);
-		g.addVertex(b);
-		g.addVertex(c);
-		g.addVertex(d);
-		g.addVertex(e);
-		g.addVertex(f);
+		Vertex<String> a = new UIVertex<String>("A", 250, 50, size);
+		Vertex<String> b = new UIVertex<String>("B", 150, 150, size);
+		Vertex<String> c = new UIVertex<String>("C", 350, 250, size);
+		Vertex<String> d = new UIVertex<String>("D", 150, 250, size);
+		Vertex<String> e = new UIVertex<String>("E", 250, 350, size);
+		Vertex<String> f = new UIVertex<String>("F", 350, 150, size);
 
-		g.addEdge(a, b);
-		g.addEdge(b, c);
-		g.addEdge(b, d);
-		g.addEdge(c, e);
-		g.addEdge(f, a);
+		((UIGraph<String>) g).addVertex(a);
+		((UIGraph<String>) g).addVertex(b);
+		((UIGraph<String>) g).addVertex(c);
+		((UIGraph<String>) g).addVertex(d);
+		((UIGraph<String>) g).addVertex(e);
+		((UIGraph<String>) g).addVertex(f);
+
+		((UIGraph<String>) g).addEdge(a, b);
+		((UIGraph<String>) g).addEdge(b, c);
+		((UIGraph<String>) g).addEdge(b, d);
+		((UIGraph<String>) g).addEdge(c, e);
+		((UIGraph<String>) g).addEdge(f, a);
 
 		System.out.println(g);
 	}
