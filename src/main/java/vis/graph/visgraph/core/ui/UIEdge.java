@@ -64,6 +64,8 @@ public class UIEdge<T> extends JComponent implements Edge<T> {
 
 		g.setColor(Color.RED);
 		g2d.drawLine(src.x, src.y, dest.x, dest.y);
+
+		g.dispose();
 	}
 
 	@Override

@@ -1,14 +1,10 @@
 package vis.graph.visgraph.core.ui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.geom.Point2D;
 
 import javax.swing.JComponent;
@@ -17,7 +13,7 @@ import vis.graph.visgraph.core.ifc.Vertex;
 import vis.graph.visgraph.core.impl.VertexImpl;
 import vis.graph.visgraph.core.utils.UIUtils;
 
-public class UIVertex<T> extends JComponent implements Vertex<T>, MouseListener, MouseMotionListener {
+public class UIVertex<T> extends JComponent implements Vertex<T> {
 	private static final long serialVersionUID = 9168220709643204176L;
 
 	private Vertex<T> vertex;
@@ -30,10 +26,8 @@ public class UIVertex<T> extends JComponent implements Vertex<T>, MouseListener,
 		super();
 
 		vertex = new VertexImpl<T>(data, x, y);
-		setPreferredSize(new Dimension(size, size));
 
-		addMouseListener(this);
-		addMouseMotionListener(this);
+		setBounds((int) x - size / 2, (int) y - size / 2, size, size);
 	}
 
 	@Override
@@ -69,6 +63,8 @@ public class UIVertex<T> extends JComponent implements Vertex<T>, MouseListener,
 		g.drawOval(b.x, b.y, b.width, b.height);
 
 		drawStringCentered(g, font, vertex.getData().toString(), b.x, b.y);
+
+		g.dispose();
 	}
 
 	public void drawStringCentered(Graphics g, Font font, String text, int x, int y) {
@@ -84,48 +80,14 @@ public class UIVertex<T> extends JComponent implements Vertex<T>, MouseListener,
 	}
 
 	@Override
+	public void setLocation(int x, int y) {
+		super.setLocation(x, y);
+
+		vertex.getPoint().setLocation(x + getWidth() / 2, y + getHeight() / 2);
+	}
+
+	@Override
 	public String toString() {
 		return vertex.toString();
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		System.out.println("MOUSE CLICKED");
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		dragging = true;
-		System.out.println("MOUSE PRESSED");
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		dragging = false;
-		System.out.println("MOUSE RELEASED");
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		System.out.println("MOUSE ENTERED");
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		System.out.println("MOUSE EXITED");
-	}
-
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		if (dragging) {
-			vertex.setPoint(new Point2D.Double(e.getPoint().x, e.getPoint().y));
-			repaint();
-		}
-		System.out.println("MOUSE DRAGGED");
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		System.out.println("MOUSE MOVED");
 	}
 }

@@ -1,8 +1,10 @@
 package vis.graph.visgraph.core.ui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Insets;
 import java.awt.geom.Point2D;
 import java.util.Enumeration;
 import java.util.Iterator;
@@ -19,12 +21,28 @@ import vis.graph.visgraph.core.impl.GraphImpl;
 public class UIGraph<T> extends JPanel implements Graph<T> {
 	private static final long serialVersionUID = 3953155966661463983L;
 
+	ComponentMover mover;
 	private Graph<T> graph;
 
 	public UIGraph(int width, int height) {
 		graph = new GraphImpl<T>();
+		mover = new ComponentMover();
 
+		setLayout(null);
 		setPreferredSize(new Dimension(width, height));
+	}
+
+	@Override
+	public Component add(Component comp) {
+		comp = super.add(comp);
+
+		Insets insets = this.getInsets();
+		Dimension size = comp.getPreferredSize();
+
+		comp.setBounds(comp.getX() + insets.left, comp.getY() + insets.top,
+				size.width, size.height);
+
+		return comp;
 	}
 
 	@Override
@@ -56,6 +74,7 @@ public class UIGraph<T> extends JPanel implements Graph<T> {
 	public Vertex<T> addVertex(Vertex<T> vertex) {
 		Vertex<T> v = graph.addVertex(vertex);
 		add((UIVertex<T>) v);
+		mover.registerComponent((UIVertex<T>) v);
 		return v;
 	}
 
@@ -86,15 +105,22 @@ public class UIGraph<T> extends JPanel implements Graph<T> {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		g.setColor(Color.YELLOW);
-		g.fillRect(0, 0, getWidth(), getHeight());
+		synchronized (g) {
 
-		for (Enumeration<Edge<T>> e = graph.getEdges().elements(); e.hasMoreElements();) {
-			((UIEdge<T>) e.nextElement()).paint(g);
-		}
+			g.setColor(Color.YELLOW);
+			g.fillRect(0, 0, getWidth(), getHeight());
 
-		for (Enumeration<Vertex<T>> e = graph.getVerticies().elements(); e.hasMoreElements();) {
-			((UIVertex<T>) e.nextElement()).paint(g);
+			for (Enumeration<Edge<T>> e = graph.getEdges().elements(); e.hasMoreElements();) {
+				((UIEdge<T>) e.nextElement()).paint(g);
+			}
+
+			for (Enumeration<Vertex<T>> e = graph.getVerticies().elements(); e.hasMoreElements();) {
+				((UIVertex<T>) e.nextElement()).paint(g);
+			}
+
+			System.out.println("Repainting...");
+
+			g.dispose();
 		}
 	}
 
