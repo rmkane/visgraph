@@ -57,12 +57,12 @@ public class UIVertex<T> extends JComponent implements Vertex<T> {
 		Rectangle b = UIUtils.getBounds(this);
 
 		g.setColor(Color.WHITE);
-		g.fillOval(b.x, b.y, b.width, b.height);
+		g.fillOval(0, 0, b.width - 1, b.height - 1);
 
 		g.setColor(Color.BLUE);
-		g.drawOval(b.x, b.y, b.width, b.height);
+		g.drawOval(0, 0, b.width - 1, b.height - 1);
 
-		drawStringCentered(g, font, vertex.getData().toString(), b.x, b.y);
+		drawStringCentered(g, font, vertex.getData().toString(), 0, 0);
 
 		g.dispose();
 	}

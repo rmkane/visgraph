@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.geom.Point2D;
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
@@ -110,17 +109,7 @@ public class UIGraph<T> extends JPanel implements Graph<T> {
 			g.setColor(Color.YELLOW);
 			g.fillRect(0, 0, getWidth(), getHeight());
 
-			for (Enumeration<Edge<T>> e = graph.getEdges().elements(); e.hasMoreElements();) {
-				((UIEdge<T>) e.nextElement()).paint(g);
-			}
-
-			for (Enumeration<Vertex<T>> e = graph.getVerticies().elements(); e.hasMoreElements();) {
-				((UIVertex<T>) e.nextElement()).paint(g);
-			}
-
 			System.out.println("Repainting...");
-
-			g.dispose();
 		}
 	}
 

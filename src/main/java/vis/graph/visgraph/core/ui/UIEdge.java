@@ -2,7 +2,6 @@ package vis.graph.visgraph.core.ui;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -25,10 +24,7 @@ public class UIEdge<T> extends JComponent implements Edge<T> {
 
 		this.edge = new EdgeImpl<T>(source, destination);
 
-		Rectangle2D bounds = UIUtils.computeBounds2D(
-				source.getPoint(), destination.getPoint());
-
-		setPreferredSize(new Dimension((int) bounds.getX(), (int) bounds.getY()));
+		setBounds();
 	}
 
 	@Override
@@ -51,20 +47,46 @@ public class UIEdge<T> extends JComponent implements Edge<T> {
 		edge.setDestination(destination);
 	}
 
+	private void setBounds() {
+		System.out.println(edge.toString());
+		Rectangle2D bounds = UIUtils.computeBounds2D(
+				getSource().getPoint(), getDestination().getPoint());
+		int width = bounds.getWidth() <= 0 ? 5 : (int) bounds.getWidth();
+		int height = bounds.getHeight() <= 0 ? 5 : (int) bounds.getHeight();
+		setBounds((int) bounds.getX(), (int) bounds.getY(), width, height);
+	}
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		Graphics2D g2d = (Graphics2D) g;
-
 		Point src = UIUtils.getPoint(getSource());
 		Point dest = UIUtils.getPoint(getDestination());
 
-		g2d.setStroke(new BasicStroke(5));
+		setBounds();
 
+		Graphics2D g2d = (Graphics2D) g;
 		g.setColor(Color.RED);
-		g2d.drawLine(src.x, src.y, dest.x, dest.y);
 
+		int x1, x2 = 0;
+		if (src.x < Math.ceil(dest.x)) {
+			x1 = 0;
+			x2 = (int) getBounds().getWidth();
+		} else {
+			x1 = (int) getBounds().getWidth();
+			x2 = 0;
+		}
+		int y1, y2 = 0;
+		if (src.y < Math.ceil(dest.y)) {
+			y1 = 0;
+			y2 = (int) getBounds().getHeight();
+		} else {
+			y1 = (int) getBounds().getHeight();
+			y2 = 0;
+		}
+
+		g2d.setStroke(new BasicStroke(5));
+		g2d.drawLine(x1, y1, x2, y2);
 		g.dispose();
 	}
 
