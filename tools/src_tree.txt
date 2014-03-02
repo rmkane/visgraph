@@ -1,35 +1,44 @@
 Folder PATH listing for volume Windows8_OS
-Volume serial number is 009F4F36 A641:3B68
+Volume serial number is A641-3B68
 C:\USERS\RYAN\WORKSPACE\VISGRAPH\SRC
 +---main
-|   \---java
-|       \---vis
-|           \---graph
-|               \---visgraph
-|                   |   App.java
-|                   |   
-|                   +---components
-|                   |       GraphPanel.java
-|                   |       
-|                   \---core
-|                       +---ifc
-|                       |       Edge.java
-|                       |       Graph.java
-|                       |       Vertex.java
-|                       |       
-|                       +---impl
-|                       |       EdgeImpl.java
-|                       |       GraphImpl.java
-|                       |       VertexImpl.java
-|                       |       
-|                       +---ui
-|                       |       UIEdge.java
-|                       |       UIGraph.java
-|                       |       UIVertex.java
-|                       |       
-|                       \---utils
-|                               UIUtils.java
-|                               
+|   +---java
+|   |   \---vis
+|   |       \---graph
+|   |           \---visgraph
+|   |               |   App.java
+|   |               |   
+|   |               +---components
+|   |               |       GraphPanel.java
+|   |               |       
+|   |               +---core
+|   |               |   +---ifc
+|   |               |   |       Edge.java
+|   |               |   |       Graph.java
+|   |               |   |       Vertex.java
+|   |               |   |       
+|   |               |   +---impl
+|   |               |   |       EdgeImpl.java
+|   |               |   |       GraphImpl.java
+|   |               |   |       VertexImpl.java
+|   |               |   |       
+|   |               |   +---ui
+|   |               |   |       ComponentMover.java
+|   |               |   |       UIEdge.java
+|   |               |   |       UIGraph.java
+|   |               |   |       UIVertex.java
+|   |               |   |       
+|   |               |   \---utils
+|   |               |           UIUtils.java
+|   |               |           
+|   |               \---example
+|   |                   \---observeable
+|   |                           EventBean.java
+|   |                           Listener.java
+|   |                           MyBean.java
+|   |                           Test.java
+|   |                           
+|   \---resources
 \---test
     \---java
         \---vis
@@ -47,8 +56,13 @@ Files:
 * [\main\java\vis\graph\visgraph\core\impl\EdgeImpl.java](https://github.com/ryankane/visgraph/blob/master/src/main/java/vis/graph/visgraph/core/impl/EdgeImpl.java) 
 * [\main\java\vis\graph\visgraph\core\impl\GraphImpl.java](https://github.com/ryankane/visgraph/blob/master/src/main/java/vis/graph/visgraph/core/impl/GraphImpl.java) 
 * [\main\java\vis\graph\visgraph\core\impl\VertexImpl.java](https://github.com/ryankane/visgraph/blob/master/src/main/java/vis/graph/visgraph/core/impl/VertexImpl.java) 
+* [\main\java\vis\graph\visgraph\core\ui\ComponentMover.java](https://github.com/ryankane/visgraph/blob/master/src/main/java/vis/graph/visgraph/core/ui/ComponentMover.java) 
 * [\main\java\vis\graph\visgraph\core\ui\UIEdge.java](https://github.com/ryankane/visgraph/blob/master/src/main/java/vis/graph/visgraph/core/ui/UIEdge.java) 
 * [\main\java\vis\graph\visgraph\core\ui\UIGraph.java](https://github.com/ryankane/visgraph/blob/master/src/main/java/vis/graph/visgraph/core/ui/UIGraph.java) 
 * [\main\java\vis\graph\visgraph\core\ui\UIVertex.java](https://github.com/ryankane/visgraph/blob/master/src/main/java/vis/graph/visgraph/core/ui/UIVertex.java) 
 * [\main\java\vis\graph\visgraph\core\utils\UIUtils.java](https://github.com/ryankane/visgraph/blob/master/src/main/java/vis/graph/visgraph/core/utils/UIUtils.java) 
+* [\main\java\vis\graph\visgraph\example\observeable\EventBean.java](https://github.com/ryankane/visgraph/blob/master/src/main/java/vis/graph/visgraph/example/observeable/EventBean.java) 
+* [\main\java\vis\graph\visgraph\example\observeable\Listener.java](https://github.com/ryankane/visgraph/blob/master/src/main/java/vis/graph/visgraph/example/observeable/Listener.java) 
+* [\main\java\vis\graph\visgraph\example\observeable\MyBean.java](https://github.com/ryankane/visgraph/blob/master/src/main/java/vis/graph/visgraph/example/observeable/MyBean.java) 
+* [\main\java\vis\graph\visgraph\example\observeable\Test.java](https://github.com/ryankane/visgraph/blob/master/src/main/java/vis/graph/visgraph/example/observeable/Test.java) 
 * [\test\java\vis\graph\visgraph\AppTest.java](https://github.com/ryankane/visgraph/blob/master/src/test/java/vis/graph/visgraph/AppTest.java) 
