@@ -104,13 +104,8 @@ public class UIGraph<T> extends JPanel implements Graph<T> {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		synchronized (g) {
-
-			g.setColor(Color.YELLOW);
-			g.fillRect(0, 0, getWidth(), getHeight());
-
-			System.out.println("Repainting...");
-		}
+		g.setColor(Color.YELLOW);
+		g.fillRect(0, 0, getWidth(), getHeight());
 	}
 
 	@Override

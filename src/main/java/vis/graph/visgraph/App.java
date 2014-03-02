@@ -21,7 +21,7 @@ public class App extends JFrame {
 
 		setTitle(title);
 		setContentPane(graphPanel);
-		setSize(800, 500);
+		setSize(500, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 	}

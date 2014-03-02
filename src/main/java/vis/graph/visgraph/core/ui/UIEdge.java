@@ -18,6 +18,7 @@ public class UIEdge<T> extends JComponent implements Edge<T> {
 	private static final long serialVersionUID = -394305098662180100L;
 
 	private Edge<T> edge;
+	private int lineWidth = 5;
 
 	public UIEdge(Vertex<T> source, Vertex<T> destination) {
 		super();
@@ -48,11 +49,12 @@ public class UIEdge<T> extends JComponent implements Edge<T> {
 	}
 
 	private void setBounds() {
-		System.out.println(edge.toString());
+		int lWidth = lineWidth * 2;
 		Rectangle2D bounds = UIUtils.computeBounds2D(
 				getSource().getPoint(), getDestination().getPoint());
-		int width = bounds.getWidth() <= 0 ? 5 : (int) bounds.getWidth();
-		int height = bounds.getHeight() <= 0 ? 5 : (int) bounds.getHeight();
+		int width = bounds.getWidth() <= lWidth ? lWidth: (int) bounds.getWidth();
+		int height = bounds.getHeight() <= lWidth ? lWidth : (int) bounds.getHeight();
+
 		setBounds((int) bounds.getX(), (int) bounds.getY(), width, height);
 	}
 
@@ -66,7 +68,6 @@ public class UIEdge<T> extends JComponent implements Edge<T> {
 		setBounds();
 
 		Graphics2D g2d = (Graphics2D) g;
-		g.setColor(Color.RED);
 
 		int x1, x2 = 0;
 		if (src.x < Math.ceil(dest.x)) {
@@ -85,7 +86,12 @@ public class UIEdge<T> extends JComponent implements Edge<T> {
 			y2 = 0;
 		}
 
-		g2d.setStroke(new BasicStroke(5));
+		g.setColor(Color.BLACK);
+		g2d.setStroke(new BasicStroke(1));
+		g.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
+
+		g.setColor(Color.RED);
+		g2d.setStroke(new BasicStroke(lineWidth));
 		g2d.drawLine(x1, y1, x2, y2);
 		g.dispose();
 	}
